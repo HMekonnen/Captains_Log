@@ -1,0 +1,29 @@
+{
+  "name": "captains_log",
+  "version": "1.0.0",
+  "main": ".config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HMekonnen/Captains_Log.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HMekonnen/Captains_Log/issues"
+  },
+  "homepage": "https://github.com/HMekonnen/Captains_Log#readme",
+  "dependencies": {
+    "config": "^3.3.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.3",
+    "morgan": "^1.10.0"
+  },
+  "description": ""
+}
