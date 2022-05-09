@@ -4,6 +4,8 @@ const mongoose = require("mongoose")
 // look into why {Router} was used prior. - two birds one stone w/ express + express.Router, maybe?
 
 const express = require("express")
+const { Timestamp } = require("bson")
+const { time } = require("console")
 
 const router =  express.Router()
 
@@ -13,7 +15,7 @@ const logSchema = new mongoose.Schema({
     title: {type: String, required: true},
     entry: {type: String, required: true},
     shipIsBroken: {type: Boolean, required: true, default:'true' },
-   
+
    // N.B circle back regarding timestamps
 })
 

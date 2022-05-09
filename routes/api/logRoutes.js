@@ -6,6 +6,8 @@ const router = express.Router()
 
 const Log = require("../../logSchema")
 
+const backlog = require("../../LogData")
+
 
 router 
 .route("/")
@@ -21,8 +23,20 @@ console.log("Route to create new entry was run")
     })
 })
 
+/**====================SEED ROUTE - SEEDS DATABACKLOG from LogData.js============================= */
 
-
+router
+.route("/seed")
+.get((req,res)=>{
+    Log.insertMany(backlog,(err, logs)=>{
+        if(err){
+            res.status(400).json({msg: err.message})
+        } else {
+            res.status(201).json(logs)
+        }
+        console.log("Seed route was run")
+    })
+})
 
 
 
