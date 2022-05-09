@@ -12,7 +12,7 @@ const router =  express.Router()
 const logSchema = new mongoose.Schema({
     title: {type: String, required: true},
     entry: {type: String, required: true},
-    shipIsBroken: {type: Boolean, default:'true' ,required: true},
+    shipIsBroken: {type: Boolean, required: true, default:'true' },
    
    // N.B circle back regarding timestamps
 })
