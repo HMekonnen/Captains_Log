@@ -109,5 +109,27 @@ router
     })
 
 
+    /**===================================================SEARCH BY ID AND UPDATE========================================================================= */
+
+        // SEARCHES BY ID AND UPDATE
+        router
+        .route("/:id")
+        .put((req, res)=>{
+            const id = req.params.id
+            const updatedLog = req.body
+            Log.findByIdAndUpdate(id, updatedLog,{new:true},(err, updatedLog)=>{
+        if (err){
+            res.status(400).json({msg: `No log with the ID of ${id} found. Please check the ID and try again.`, msg2: err.message})
+        } else {
+            res.status(200).json({msg: `Update Successful`, display: {updatedLog}})
+        }
+          
+        console.log("Search by ID and update was run")
+        })
+    })
+
+
+
+
 
 module.exports = router
