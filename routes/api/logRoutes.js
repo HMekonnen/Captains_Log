@@ -72,6 +72,41 @@ router
     })
 })
 
+/**====================DELETE BY ID -INDEX/:ID ROUTE - Search by ID and DELETE ============================= */
+
+router
+.route("/index/:id")
+.delete((req,res)=>{
+    const id= req.params.id
+    Log.findByIdAndDelete(id,(err, logs)=>{
+            if (err){
+                res.status(400).json({msg: `The id you entered: ${id} was not found. Please check the ID and try again.`, msg2: err.message})
+            } else {
+                res.status(200).json({display: logs, msg:"Successfully deleted"})
+            }
+           
+        console.log(" Delete by Index/:id route was run")
+    })
+})
+
+/**===================================================DELETES ALL========================================================================= */
+
+// Delete ALL --> unless parameters specify otherwise    
+router
+.route("/clear")
+.delete((req,res)=>{
+ 
+ Log.deleteMany((err)=>{
+    if(err){
+        res.status(404).json({message: err.message})
+    } else {
+        res.status(204).json({msg: 'Data was successfully cleared!'})
+    }
+   
+    console.log("Delete many was run")
+})
+
+    })
 
 
 
