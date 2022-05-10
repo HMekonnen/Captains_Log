@@ -6,7 +6,7 @@ const router = express.Router()
 
 const Log = require("../../logSchema")
 
-const backlog = require("../../LogData")
+const log = require("../../LogData")
 
 
 router 
@@ -23,12 +23,12 @@ console.log("Route to create new entry was run")
     })
 })
 
-/**====================SEED ROUTE - SEEDS DATABACKLOG from LogData.js============================= */
+/**====================SEED ROUTE - SEEDS DATALOG from LogData.js============================= */
 
 router
 .route("/seed")
 .get((req,res)=>{
-    Log.insertMany(backlog,(err, logs)=>{
+    Log.insertMany(log,(err, logs)=>{
         if(err){
             res.status(400).json({msg: err.message})
         } else {
@@ -40,6 +40,37 @@ router
 
 
 
+/**====================INDEX ROUTE - Displays all content in DB ============================= */
+
+router
+.route("/index")
+.get((req,res)=>{
+    Log.find((err,log)=>{
+        if(err){
+            res.status(400).json({msg: err.message})
+        } else {
+            res.status(201).json({log})
+        }
+        console.log("Index route was run")
+    })
+})
+
+/**====================INDEX/:ID ROUTE - Search by ID and display result ============================= */
+
+router
+.route("/index/:id")
+.get((req,res)=>{
+    const id= req.params.id
+    Log.findById(id,(err, logs)=>{
+            if (err){
+                res.status(400).json({msg: `The id you entered: ${id} was not found. Please check the ID and try again.`, msg2: err.message})
+            } else {
+                res.status(200).json(logs)
+            }
+           
+        console.log("Index/:id route was run")
+    })
+})
 
 
 
